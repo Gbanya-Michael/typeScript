@@ -1,15 +1,13 @@
-import { Report } from "./Reports";
 import fs from "fs";
-
-export class HtmlReport extends Report {
-  print(): void {
-    const html = `
-    
-      <div>
-      <h1> HTML Report </h1>
-      <p>${this.report}</p>
-    </div>`;
+import { Reportable } from "./Interface";
+export class HtmlReport implements Reportable<string, void> {
+  print(report: string): void {
+    const html = ` 
+     <div>
+        <h1> HTML Report </h1>
+        <p> ${report} </p>
+      </div>`;
     fs.writeFileSync("report.html", html);
-    console.log("html report generated");
+    console.log("html result generated");
   }
 }

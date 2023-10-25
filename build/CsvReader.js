@@ -9,16 +9,15 @@ class CsvReader {
     constructor(filename) {
         this.filename = filename;
         this.data = [];
-        this.data = this.read(filename);
+        this.read(filename);
     }
     read(filename) {
-        return fs_1.default
+        this.data = fs_1.default
             .readFileSync(this.filename, { encoding: "utf8" })
             .split("\n")
             .map((row) => {
             return row.split(",");
-        })
-            .map(this.mapRow);
+        });
     }
 }
 exports.CsvReader = CsvReader;
